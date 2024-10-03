@@ -1,6 +1,9 @@
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { ICount } from '../../redux/userSlice';
 
 function Navbar() {
+    const count = useSelector((state: {userSlice: ICount}) => state.userSlice.value)
     return (
         <div className='bg-black flex justify-between items-center h-24 w-full mx-auto px-4 text-white'>
             <h1 className='text-[24px] font-bold text-[#00df9a]'>Network Call Practice</h1>
@@ -16,6 +19,7 @@ function Navbar() {
                     </Link>
                 </li>
             </ul>
+            <h1>Total User : {count} </h1>
         </div>
 
     )

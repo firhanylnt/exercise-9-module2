@@ -1,14 +1,17 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import IUser from "../../interface/user.interface";
+import { useDispatch } from 'react-redux';
+import { setUserCount } from "../../redux/userSlice";
 
 function Home() {
     const [users, setUsers] = useState<IUser[]>([]);
-
+    const dispatch = useDispatch();
     const getUsers = async () => {
         try {
             const { data } = await axios.get('https://66fd3bbcc3a184a84d1990d8.mockapi.io/api/v1/users');
             setUsers(data);
+            dispatch(setUserCount(data.length));
         } catch (error) {
             console.log(error)
         }
